@@ -1,0 +1,44 @@
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <div class="row">
+      <div class="col-md-12">
+        <h1>Sign up</h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <form role="form" ng-submit="submitForm(signup.username, signup.password, signup.email)">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="newUserNickname">Username:</label>
+              <input type="text" class="form-control input-sm" name="username" placeholder="username" ng-model="signup.username" id="newUserUsername" required>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label for="newUserPassword">Password:</label>
+              <input type="password" class="form-control input-sm" name="password" placeholder="password" ng-model="signup.password" id="newUserPassword" required>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="form-group">
+              <label for="newUserEmail">Email:</label>
+              <input type="email" class="form-control input-sm" name="email" placeholder="email" ng-model="signup.email" id="newUserEmail" required>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" ng-model="signup.acceptTerms" required>
+                <small>I'm cool with the terms and everything</small>
+              </label>
+            </div>
+          </div>
+          <div class="col-md-12">
+            <button type="submit" class="btn btn-success" ng-disabled="!signup.acceptTerms">¡Crear cuenta!</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

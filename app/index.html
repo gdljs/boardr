@@ -1,0 +1,142 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(.) styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/toastr/toastr.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-MfvZlkHCEqatNoGiOXveE8FIwMzZg4W85qfrfIFBfYc= sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.5/paper/bootstrap.min.css" rel="stylesheet" integrity="sha256-hMIwZV8FylgKjXnmRI2YY0HLnozYr7Cuo1JvRtzmPWs= sha512-k+wW4K+gHODPy/0gaAMUNmCItIunOZ+PeLW7iZwkDZH/wMaTrSJTt7zK6TGy6p+rnDBghAxdvu1LX2Ohg0ypDw==" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Bangers' rel='stylesheet' type='text/css'>
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- endbuild -->
+  </head>
+  <body ng-app="boardrApp">
+    <!--[if lte IE 8]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+    <![endif]-->
+
+    <!-- Add your site or application content here -->
+    <nav class="navbar navbar-default navbar-fixed-top" ng-controller="NavbarCtrl">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand brand-font" href="/#/">boardr</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav navbar-right">
+            <li ng-show="!userSignedIn"><a href="/#/signup">sign up</a></li>
+            <li ng-show="!userSignedIn">
+              <a class="dropdown-toggle" href="" data-toggle="dropdown">login</a> <!-- /#/login -->
+                <div class="dropdown-menu" style="padding:1.5em; min-width: 350px;">
+                  <form class="form" id="formLogin">
+                    <div class="form-group">
+                      <label for="id">username</label>
+                      <input class="form-control" name="id" id="id" type="text" placeholder="username" ng-model="user.username" />
+                    </div>
+                    <div class="form-group">
+                      <label for="password">password</label>
+                      <input class="form-control" name="password" id="password" type="password" placeholder="password" ng-model="user.password" />
+                    </div>
+                    <button type="submit" id="btnLogin" class="btn btn-primary btn-block" style="margin-top:2em;" ng-click="login(user.username, user.password)">login</button>
+                  </form>
+                </div>
+            </li>
+            <li ng-show="userSignedIn" class="dropdown">
+              <a href="" class="dropdown-toggle"><i class="fa fa-user fa-fw"></i> <span ng-bind="currentUserNickName">usuario</span> <span class="caret"></span></a>
+              <ul class="dropdown-menu" role="menu">
+                <li><a href="#/profile"><i class="fa fa-user fa-fw"></i> Mi perfil público</a></li>
+                <li class="divider"></li>
+                <li><a href="#" ng-click="logout()"><i class="fa fa-sign-out fa-fw"></i> Cerrar Sesión</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
+
+    <div class="container" style="margin-top:75px;min-height:75vh;">
+      <div ng-view=""></div>
+    </div>
+
+    <div class="container">
+      <hr>
+      <footer>
+        <div class="row">
+          <div class="col-md-12 text-center">
+            &copy; boardr.xyz
+            <br />
+            <a href="/#/about">About</a>
+            &bull;
+            <a href="/#/contact">Contact</a>
+            &bull;
+            <a href="/#/privacy">Privacy</a>
+            &bull;
+            <a href="/#/terms">Terms</a>
+            &bull;
+            <a href="/#/sponsors">Sponsors</a>
+          </div>
+        </div>
+      </footer>
+    </div>
+
+
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+     <script>
+       !function(A,n,g,u,l,a,r){A.GoogleAnalyticsObject=l,A[l]=A[l]||function(){
+       (A[l].q=A[l].q||[]).push(arguments)},A[l].l=+new Date,a=n.createElement(g),
+       r=n.getElementsByTagName(g)[0],a.src=u,r.parentNode.insertBefore(a,r)
+       }(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+       ga('create', 'UA-XXXXX-X');
+       ga('send', 'pageview');
+    </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha256-Sk3nkD6mLTMOF0EOpNtsIry+s1CsaqQC1rVLTAy+0yc= sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+    <!-- build:js(.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.js"></script>
+    <script src="bower_components/angular-animate/angular-animate.js"></script>
+    <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+    <script src="bower_components/angular-resource/angular-resource.js"></script>
+    <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+    <script src="bower_components/angular-touch/angular-touch.js"></script>
+    <script src="bower_components/toastr/toastr.js"></script>
+    <!-- endbower -->
+    <!-- endbuild -->
+
+        <!-- build:js({.tmp,app}) scripts/scripts.js -->
+        <script src="scripts/app.js"></script>
+        <script src="scripts/controllers/main.js"></script>
+        <script src="scripts/controllers/about.js"></script>
+        <script src="scripts/controllers/navbar.js"></script>
+        <script src="scripts/controllers/signup.js"></script>
+        <script src="scripts/controllers/contact.js"></script>
+        <script src="scripts/controllers/privacy.js"></script>
+        <script src="scripts/controllers/terms.js"></script>
+        <script src="scripts/controllers/sponsors.js"></script>
+        <script src="scripts/services/auth.js"></script>
+        <script src="scripts/services/serviceuri.js"></script>
+        <script src="scripts/controllers/profile.js"></script>
+        <!-- endbuild -->
+</body>
+</html>
