@@ -9,7 +9,7 @@
  */
 angular.module('boardrApp')
   .controller('NavbarCtrl', function ($rootScope, $scope, $window, auth) {
-    $scope.user = {};
+    $scope.login = {};
 
     $rootScope.userSignedIn = $window.sessionStorage["authenticated"];
 
@@ -19,8 +19,8 @@ angular.module('boardrApp')
 
     $scope.login = function (user, pass) {
       auth.login(user, pass);
-      $scope.user.username = undefined;
-      $scope.user.password = undefined;
+      $scope.login.username = undefined;
+      $scope.login.password = undefined;
     };
 
     $scope.logout = function(){

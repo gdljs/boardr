@@ -13,7 +13,9 @@ angular.module('boardrApp')
         $location.path('/');
     }
 
-    $scope.submitForm = function(username, password, email) {
-        auth.signup(username, password, email);
+    $scope.signup = {};
+
+    $scope.submitForm = function() {
+        auth.signup($scope.signup.username, $scope.signup.password, $scope.signup.email);
     };
   });

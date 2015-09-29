@@ -15,15 +15,13 @@ angular.module('boardrApp')
         $http.post(SERVICEURI + 'api/auth/login', {'username': username, 'password': password}).
             then(function(result) {
                 toastr.success('Welcome!');
-                console.log(result);
                 $window.sessionStorage["auth_token"] = result.data.auth_token;
-                $window.sessionStorage["email"] = result.data.email;
-                $window.sessionStorage["username"] = result.data.username;
+                $window.sessionStorage["email"] = result.data.user.email;
+                $window.sessionStorage["username"] = result.data.user.username;
                 $window.sessionStorage["authenticated"] = true;
-                $window.sessionStorage["a_level"] = result.data.role;
-                $window.sessionStorage["uid"] = result.data.userid.$oid;
+                $window.sessionStorage["a_level"] = result.data.user.role;
+                $window.sessionStorage["uid"] = result.data.user.$oid;
                 $rootScope.userSignedIn = true;
-                //reload SPA
                 $location.path('/');
             }, function(error) {
                 toastr.error('Maybe you mistyped something, please try again', 'Can\'t login');
@@ -34,11 +32,9 @@ angular.module('boardrApp')
     };
 
     this.signup = function(username, password, email){
-        $http.post(SERVICEURI + 'api/auth/signup', { 'username' : username, 'password' : password, 'email': email }).
+        $http.post(SERVICEURI + 'api/auth/signup', { 'username' : username, 'password' : password, 'email' : email }).
             then(function(result){
                 self.login(username, password);
-                $location.path('/');
-                window.location.reload();
             }, function(error){
                 toastr.error('Something went wrong with that signup');
                 console.log(error.data);
