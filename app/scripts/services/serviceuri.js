@@ -8,8 +8,8 @@
  * Constant in the boardrApp.
  */
 
-//var SERVICEURI = 'http://api.boardr.xyz/';
-var SERVICEURI = 'http://localhost:3000/';
+var SERVICEURI = 'https://stormy-tundra-5193.herokuapp.com/';
+//var SERVICEURI = 'http://localhost:3000/';
 
 angular.module('boardrApp')
   .constant('SERVICEURI', SERVICEURI);
